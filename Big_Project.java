@@ -1,4 +1,4 @@
-
+import java.util.Random;
 
 class Big_Project
 {
@@ -9,46 +9,43 @@ class Big_Project
     
     do
     {
-      Random();
+      Lottery();
       command = In.getChar();
     } while (command == 'a');
     System.out.println("Program is ending");
     
     } // public static void
     
-//    do
-//    {
-//    for(life=0; life<6; life++)
-//    {
-//      int random = (int)(Math.random() * 9 + 1);
-//      System.out.println(random);
-//    }
-//    command = In.getChar();
-//    } while (command == 'a');
-  
-  
-    
-    
-    public static void Random()
-    {
-      int life;
-      int guess;
-      for(life=0; life<6; life++)
-      {
-        do
-        {
-        System.out.println("Enter a 6 digit number");
-        guess = In.getInt();
-        } while (guess == 123456);
-      int random = (int)(Math.random() * 9 + 1);
-      //System.out.println
-      System.out.print(random);
-      
-      
-      
 
-      }
+  
+  public static void Lottery()
+  {
+    int trying = 0;
+    System.out.println("Enter a 6 digit number");
+    int guess = In.getInt();
+    int random;
+    
+    do
+    {
+    trying++;
+    // Random number from 100000 to 900000
+    random = 100000 + new Random().nextInt(900000);
+
+    System.out.println(trying + ": " + random + " = " + guess);
+    } while (guess != random && trying <= 49);
+    
+    if (guess == random)
+    {
+      System.out.println("You won!");
     }
+    else
+    {
+      System.out.println("You lose");
+    }
+    System.out.print("Submit a to try again");
+  }
+
+   
   
   
   
