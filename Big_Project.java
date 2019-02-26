@@ -6,6 +6,7 @@
  */
 
 import java.util.Random;
+//import java.util.Arrays;
 
 class Big_Project
 {
@@ -494,119 +495,196 @@ class Big_Project
   {
     // Variables
     int rn1, rn2, rn3, rn4, rn5, rn6 = 0;
-    int guess, guess2, guess3, guess4, guess5, guess6 = 0;
+    //int guess, guess2, guess3, guess4, guess5, guess6 = 0;
     int points = 0;
     int money = 0;
+    int count = 1;
+    int check = 0;
     
-    // Select a # (# needs to be in between 1 and 49)
-    do
+    //
+    //Things to do
+    //make a check for the array to see if the numbers = any of the random numbers
+    
+    //Making it into an array
+    int[] userGuess = new int[6]; //Amount of times the user can guess a #
+    int i = 0; //this will store the array (# guessed)
+    int test; // Protects the array from being messed up
+    for (i = 0; i < userGuess.length; i++) //Once (int i) reaches 6 stop the loop
+    {  
+      do
+      {
+        test = In.getInt(); // Gets #
+        if (test >= 50 || test <= 0) // Checks if # is allowed
+        {
+          System.out.println("#1-49");
+        }
+        else
+        {
+          userGuess[i] = test; // Adds the number to the array
+        }
+      } while (test >= 50 || test <= 0);
+      System.out.println("Number [" + count + "] = " + userGuess[i] + " ");
+      count++;
+    }
+    //System.out.println("test" + userGuess[0] + userGuess[1] + userGuess[2] + userGuess[3] + userGuess[4] + userGuess[5]);
+    System.out.println("Your Guess");
+    count = 1; // resets the count
+    for (i = 0; i < userGuess.length; i++)
     {
-      System.out.println("Select a number between 1-49 | (1)");
-      guess = In.getInt();
-    } while (guess >= 50 || guess <= 0);
-    do
-    {
-      System.out.println("Select a number between 1-49 | (2)");
-      guess2 = In.getInt();
-    } while (guess2 >= 50 || guess2 <= 0);
-    do
-    {
-      System.out.println("Select a number between 1-49 | (3)");
-      guess3 = In.getInt();
-    } while (guess3 >= 50 || guess3 <= 0);
-    do
-    {
-      System.out.println("Select a number between 1-49 | (4)");
-      guess4 = In.getInt();
-    } while (guess4 >= 50 || guess4 <= 0);
-    do
-    {
-      System.out.println("Select a number between 1-49 | (5)");
-      guess5 = In.getInt();
-    } while (guess5 >= 50 || guess5 <= 0);
-    do
-    {
-      System.out.println("Select a number between 1-49 | (6)");
-      guess6 = In.getInt();
-    } while (guess6 >= 50 || guess6 <= 0);
+      System.out.println("Number [" + count + "] = " + userGuess[i]); // Displays when they entered the # and what the # is
+      count++;
+    }
     
     // Generates a random #
-    rn1 = 1 + new Random().nextInt(49);
-    rn2 = 1 + new Random().nextInt(49);
-    rn3 = 1 + new Random().nextInt(49);
-    rn4 = 1 + new Random().nextInt(49);
-    rn5 = 1 + new Random().nextInt(49);
-    rn6 = 1 + new Random().nextInt(49);
+    rn1 = 1 + new Random().nextInt(1);
+    rn2 = 1 + new Random().nextInt(1);
+    rn3 = 1 + new Random().nextInt(1);
+    rn4 = 1 + new Random().nextInt(1);
+    rn5 = 1 + new Random().nextInt(1);
+    rn6 = 1 + new Random().nextInt(1);
     
-    System.out.println(rn1);
-    System.out.println(rn2);
-    System.out.println(rn3);
-    System.out.println(rn4);
-    System.out.println(rn5);
-    System.out.println(rn6);
+    // Converting to array
+    int[] lotteryNumber = new int[6];
+    lotteryNumber[0] = rn1;
+    lotteryNumber[1] = rn2;
+    lotteryNumber[2] = rn3;
+    lotteryNumber[3] = rn4;
+    lotteryNumber[4] = rn5;
+    lotteryNumber[5] = rn6;
     
-    // User quick play #
-    guess = 1 + new Random().nextInt(49);
-    if (rn1 == guess && rn2 == guess && rn3 == guess && rn4 == guess && rn5 == guess && rn6 == guess)
+    System.out.print("Lottery Numbers: ");
+    for (i = 0; i < lotteryNumber.length; i++)
     {
-      points = points + 1;
-      System.out.println(guess + " = " + guess);
+      System.out.print(lotteryNumber[i] + " ");
     }
-    guess2 = 1 + new Random().nextInt(49);
-    if (rn1 == guess2 && rn2 == guess2 && rn3 == guess2 && rn4 == guess2 && rn5 == guess2 && rn6 == guess2)
+    System.out.println(); // Adding a new line
+    System.out.print("Your Numbers: ");
+    
+    for (i = 0; i < userGuess.length; i++)
     {
-      points = points + 1;
-      System.out.println(guess2 + " = " + guess2);
+      System.out.print(userGuess[i] + " ");
     }
-    guess3 = 1 + new Random().nextInt(49);
-    if (rn1 == guess3 && rn2 == guess3 && rn3 == guess3 && rn4 == guess3 && rn5 == guess3 && rn6 == guess3)
+    System.out.println(); // Adding new line
+    
+    // Check 1st number
+    for (i = 0; i < lotteryNumber.length; i++)
     {
-      points = points + 1;
-      System.out.println(guess3 + " = " + guess3);
-    }
-    guess4 = 1 + new Random().nextInt(49);
-    if (rn1 == guess4 && rn2 == guess4 && rn3 == guess4 && rn4 == guess4 && rn5 == guess4 && rn6 == guess4)
-    {
-      points = points + 1;
-      System.out.println(guess4 + " = " + guess4);
-    }
-    guess5 = 1 + new Random().nextInt(49);
-    if (rn1 == guess5 && rn2 == guess5 && rn3 == guess5 && rn4 == guess5 && rn5 == guess5 && rn6 == guess5)
-    {
-      points = points + 1;
-      System.out.println(guess5 + " = " + guess5);
-    }
-    guess6 = 1 + new Random().nextInt(49);
-    if (rn1 == guess6 && rn2 == guess6 && rn3 == guess6 && rn4 == guess6 && rn5 == guess6 && rn6 == guess6)
-    {
-      points = points + 1;
-      System.out.println(guess6 + " = " + guess6);
+      if (lotteryNumber[i] == userGuess[0]) // Checks if the lotteryNumber and userGuess are the same
+      {
+        lotteryNumber[i] = 0; // removes number so they cant win it again
+        points++;
+      }
+      if (points != check) // If they arent the same break the loop and go to the next line of code
+      {
+        check++;
+        break; // Ends this loop
+      }
     }
     
+    // Check 2nd number
+    for (i = 0; i < lotteryNumber.length; i++)
+    {
+      if (lotteryNumber[i] == userGuess[1])
+      {
+        lotteryNumber[i] = 0;
+        points++;
+      }
+      if (points != check)
+      {
+        check++;
+        break;
+      }
+    }
     
+    // Check 3rd number
+    for (i = 0; i < lotteryNumber.length; i++)
+    {
+      if (lotteryNumber[i] == userGuess[2])
+      {
+        lotteryNumber[i] = 0;
+        points++;
+      }
+      if (points != check)
+      {
+        check++;
+        break;
+      }
+    }
+    
+    // Check 4th number
+    for (i = 0; i < lotteryNumber.length; i++)
+    {
+      if (lotteryNumber[i] == userGuess[3])
+      {
+        lotteryNumber[i] = 0;
+        points++;
+      }
+      if (points != check)
+      {
+        check++;
+        break;
+      }
+    }
+    
+    // Check 5th number
+    for (i = 0; i < lotteryNumber.length; i++)
+    {
+      if (lotteryNumber[i] == userGuess[4])
+      {
+        lotteryNumber[i] = 0;
+        points++;
+      }
+      if (points != check)
+      {
+        check++;
+        break;
+      }
+    }
+    
+    // Check 6th number
+    for (i = 0; i < lotteryNumber.length; i++)
+    {
+      if (lotteryNumber[i] == userGuess[5])
+      {
+        lotteryNumber[i] = 0;
+        points++;
+      }
+      if (points != check)
+      {
+        check++;
+        break;
+      }
+    }
+    
+    // Lottery winnings
     switch (points)
     {
       case 2:
+        System.out.println("You matched 2 numbers");
         money = 5;
         System.out.println("You won!\n"
                              + "Money gained: $" + money);
         break;
       case 3:
+        System.out.println("You matched 3 numbers");
         money = 50;
         System.out.println("You won!\n"
                              + "Money gained: $" + money);
         break;
       case 4:
+        System.out.println("You matched 4 numbers");
         money = 1000;
         System.out.println("You won!\n"
                              + "Money gained: $" + money);
         break;
       case 5:
+        System.out.println("You matched 5 numbers");
         money = 500000;
         System.out.println("You won!\n"
                              + "Money gained: $" + money);
         break;
       case 6:
+        System.out.println("You matched 6 numbers");
         money = 1000000;
         System.out.println("   $$$$$\\  $$$$$$\\   $$$$$$\\  $$\\   $$\\ $$$$$$$\\   $$$$$$\\ $$$$$$$$\\ \n"
                              + "   \\__$$ |$$  __$$\\ $$  __$$\\ $$ | $$  |$$  __$$\\ $$  __$$\\__$$  __|\n"
@@ -619,6 +697,7 @@ class Big_Project
                              + "Money gained: $" + money);
         break;
       default:
+        System.out.println("You matched " + points + " numbers");
         money = 0;
         System.out.println("You lost!\n"
                              + "Money gained: $" + money);
