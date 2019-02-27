@@ -62,7 +62,6 @@ class Big_Project
     int points = 0;
     int money = 0;
     int count = 1;
-    int check = 0;
     
     // Array
     int[] userGuess = new int[6]; // Amount of times the user can guess a #
@@ -132,11 +131,7 @@ class Big_Project
       {
         lotteryNumber[i] = 0; // removes number so they cant win it again
         points++;
-      }
-      if (points != check) // If they arent the same break the loop and go to the next line of code
-      {
-        check++;
-        break; // Ends this loop
+        break;
       }
     }
     
@@ -147,10 +142,6 @@ class Big_Project
       {
         lotteryNumber[i] = 0;
         points++;
-      }
-      if (points != check)
-      {
-        check++;
         break;
       }
     }
@@ -162,10 +153,6 @@ class Big_Project
       {
         lotteryNumber[i] = 0;
         points++;
-      }
-      if (points != check)
-      {
-        check++;
         break;
       }
     }
@@ -177,10 +164,6 @@ class Big_Project
       {
         lotteryNumber[i] = 0;
         points++;
-      }
-      if (points != check)
-      {
-        check++;
         break;
       }
     }
@@ -192,10 +175,6 @@ class Big_Project
       {
         lotteryNumber[i] = 0;
         points++;
-      }
-      if (points != check)
-      {
-        check++;
         break;
       }
     }
@@ -207,10 +186,6 @@ class Big_Project
       {
         lotteryNumber[i] = 0;
         points++;
-      }
-      if (points != check)
-      {
-        check++;
         break;
       }
     }
@@ -271,7 +246,6 @@ class Big_Project
     int points = 0;
     int money = 0;
     int count = 1;
-    int check = 0;
     // Arrays
     int[] userGuess = new int[6];
     int[] lotteryNumber = new int[6];
@@ -339,11 +313,7 @@ class Big_Project
       {
         lotteryNumber[i] = 0; // removes number so they cant win it again
         points++;
-      }
-      if (points != check) // If they arent the same break the loop and go to the next line of code
-      {
-        check++;
-        break; // Ends this loop
+        break;
       }
     }
     
@@ -354,10 +324,6 @@ class Big_Project
       {
         lotteryNumber[i] = 0;
         points++;
-      }
-      if (points != check)
-      {
-        check++;
         break;
       }
     }
@@ -369,10 +335,6 @@ class Big_Project
       {
         lotteryNumber[i] = 0;
         points++;
-      }
-      if (points != check)
-      {
-        check++;
         break;
       }
     }
@@ -384,10 +346,6 @@ class Big_Project
       {
         lotteryNumber[i] = 0;
         points++;
-      }
-      if (points != check)
-      {
-        check++;
         break;
       }
     }
@@ -399,10 +357,6 @@ class Big_Project
       {
         lotteryNumber[i] = 0;
         points++;
-      }
-      if (points != check)
-      {
-        check++;
         break;
       }
     }
@@ -414,10 +368,6 @@ class Big_Project
       {
         lotteryNumber[i] = 0;
         points++;
-      }
-      if (points != check)
-      {
-        check++;
         break;
       }
     }
@@ -480,7 +430,6 @@ class Big_Project
     int i = 0;
     int points = 0;
     int money = 0;
-    int check = 0;
     
     // Arrays
     int[] userGuess = new int[6];
@@ -516,11 +465,7 @@ class Big_Project
       {
         lotteryNumber[i] = 0; // removes number so they cant win it again
         points++;
-      }
-      if (points != check) // If they arent the same break the loop and go to the next line of code
-      {
-        check++;
-        break; // Ends this loop
+        break;
       }
     }
     
@@ -531,10 +476,6 @@ class Big_Project
       {
         lotteryNumber[i] = 0;
         points++;
-      }
-      if (points != check)
-      {
-        check++;
         break;
       }
     }
@@ -546,10 +487,6 @@ class Big_Project
       {
         lotteryNumber[i] = 0;
         points++;
-      }
-      if (points != check)
-      {
-        check++;
         break;
       }
     }
@@ -561,10 +498,6 @@ class Big_Project
       {
         lotteryNumber[i] = 0;
         points++;
-      }
-      if (points != check)
-      {
-        check++;
         break;
       }
     }
@@ -576,10 +509,6 @@ class Big_Project
       {
         lotteryNumber[i] = 0;
         points++;
-      }
-      if (points != check)
-      {
-        check++;
         break;
       }
     }
@@ -591,10 +520,6 @@ class Big_Project
       {
         lotteryNumber[i] = 0;
         points++;
-      }
-      if (points != check)
-      {
-        check++;
         break;
       }
     }
