@@ -13,7 +13,8 @@ class MMMAnimal
   int attack;  // = weaponry * (temper + speed);
   int danger;  // = (attack + defense + health) * temper;
   
-  public void mmmAnimal()
+  //CONSTRUCTOR METHODS
+  public MMMAnimal()
   {
     System.out.println("What is the name of your animal");//name
     name = In.getString();
@@ -47,67 +48,109 @@ class MMMAnimal
     for (int i = 0; i < turf.length; i++)
     {
       System.out.println("1-10 (" + i + ")");
+      switch (i)
+      {
+        case 0:
+          System.out.println("open field");
+          break;
+        case 1:
+          System.out.println("forest");
+          break;
+        case 2:
+          System.out.println("water/shoreline");
+          break;
+        case 3:
+          System.out.println("tundra/arctic");
+          break;
+        case 4:
+          System.out.println("mountain");
+      }
       turf [i] = In.getInt();
     }
     
     System.out.println();
-     
+    
     defense = armor * speed;
     attack = weaponry * (temper + speed);
     danger = (attack + defense + health) * temper;
   }
   
+  public MMMAnimal (String n, int h, int w, int a, int s, int t, int turf0, int turf1, int turf2, int turf3, int turf4)
+  {
+    this.name = n;
+    this.health = h; 
+    this.weaponry = w;
+    this.armor = a;
+    this.speed = s;
+    this.temper = t;
+    this.turf[0] = turf0;
+    this.turf[1] = turf1;
+    this.turf[2] = turf2;
+    this.turf[3] = turf3;
+    this.turf[4] = turf4;
+    
+    defense = this.armor * this.speed;
+    attack = this.weaponry * (this.temper + this.speed);
+    danger = (this.attack + this.defense + this.health) * this.temper;
+  }
+  
+  // INSTANCE METHODS
   public void strike(MMMAnimal opp)
   {
     //a.strike(opp)
     int off = 0 + new Random().nextInt(this.attack);
     int def = 0 + new Random().nextInt(opp.defense);
-    System.out.println(this.name + " striked " + opp.name + "!\n" + this.name + ", off = " + off + "\n" + opp.name +", blocked for\ndef = " + def);
-    System.out.println();
+    System.out.println(this.name + " striked " + opp.name + "!\n"
+                         + this.name + ", off = " + off + "\n"
+                         + opp.name + ", def = " + def + "\n");
     
     if (off > def)
     {
+      int oldHealth = opp.health;
       opp.health = opp.health - (off - def);
       int lost = (off - def); // Displays how much health they lost
-      System.out.println(opp.name + " lost " + lost + " health. " + opp.name + " now has " + opp.health);
+      System.out.println("Total Damage = " + lost + "\n"
+                           + opp.name + " lost " + lost + " health. " + opp.name + " went from " + oldHealth + " to " + opp.health + " hp");
+      System.out.println();
     }
     else
     {
       if(this.health>5) // this will simulate an unsuccessful attack that tires the  attacker
       {
+        int oldHealth = this.health;
         this.health = this.health - 5;
-        System.out.println(this.name + " lost 5 health. " + this.name + " now has " + this.health);
+        System.out.println(this.name + " lost 5 health. " + this.name + " went from " + oldHealth + " to " + this.health + " hp");
+        System.out.println();
       }
       else
       {
         this.health = this.health - 1;
         System.out.println(this.name + " lost 1 health. " + this.name + " now has " + this.health);
+        System.out.println();
       }
     }
   }
   
-//  public boolean run (MMMAnimal opp)
-//  {
-//    if (this.danger < opp.danger)
-//    {
-//      if (this.speed > opp.speed)
-//      {
-//       if (this.temper < 5 )
-//       {
-//         int run = 0 + new Random().nextInt(opp.danger-this.danger);
-//         if (run < this.danger)
-//         {
-//           return true; // runs away
-//         }
-//         else
-//         {
-//           return false; // stays in the fight
-//         }
-//       }
-//      }
-//    }
-//    return false;
-//  }
+  public boolean run (MMMAnimal opp)
+  {
+    int dangerCheck = opp.danger - this.danger;
+    if (dangerCheck < 0)
+    {
+      dangerCheck = 1;
+    }
+    int run = 1 + new Random().nextInt(dangerCheck);
+    
+    if (this.danger < opp.danger && this.speed > opp.speed && this.temper < 5 && run < this.danger)
+    {
+      System.out.println(this.name + " ran away!");
+      return true;
+    }
+    else
+    {
+      System.out.println(this.name + " cant run.");
+      return false;
+    }
+  }
   
   public void showStats()
   {
@@ -138,39 +181,27 @@ class MMMAnimal
     danger = (attack + defense + health)*temper;
   }
   
-  public void opp ()
-  {
-    name = "Opponent";
-    health = 1 + new Random().nextInt(100);
-    weaponry = 1 + new Random().nextInt(10);
-    armor = 1 + new Random().nextInt(10);
-    speed = 1 + new Random().nextInt(10);
-    temper = 1 + new Random().nextInt(10);
-    
-    for (int i = 0; i < turf.length; i++)
-    {
-      turf[i] = 1 + new Random().nextInt(10);
-    }
-    
-    defense = this.armor * this.speed;
-    attack = this.weaponry * (this.temper + this.speed);
-    danger = (this.attack + this.defense + this.health) * this.temper;
-  }
-  
   
   public static void main (String [] args)
   {
-    MMMAnimal a = new MMMAnimal();
-    MMMAnimal b = new MMMAnimal();
-    a.mmmAnimal(); // User creates animal
-    a.showStats(); // Shows users animal stats
-    b.opp(); // Creates opponent
-    b.showStats(); // Displays opponents stats
+    // "name", health, weaponry, armor, speed, temper, open field, forest, water/shoreline, tundra/arctic, mountain
+    MMMAnimal shane = new MMMAnimal("Shane", 50, 5, 10, 10, 3, 10, 10, 3, 8, 10); // Create 
+    MMMAnimal dinosaur = new MMMAnimal("Dinosaur", 100, 10, 10, 10, 10, 10, 10, 10, 10, 10); // Create dinosaur
+//    MMMAnimal shane = new MMMAnimal("Shane", 50, 5, 10, 10, 3, 10, 10, 3, 8, 10);
+//    MMMAnimal dinosaur = new MMMAnimal("Dinosaur", 1000, 100, 100, 1, 1, 100, 100, 100, 100, 100);
+    shane.showStats(); // Shane's stats
+    dinosaur.showStats(); // Dinosaur stats
+    if (shane.run(dinosaur) == true)
+    {}
+    else
+    {
+    shane.strike(dinosaur); // Shane attacks Dinosaur
+    shane.update();
+    shane.showStats();
+    dinosaur.update(); // Updates Dinosaurs stats
+    dinosaur.showStats(); // Displays Dinosaurs stats
+    }
     
-    a.strike(b); // A striked B
-    a.update(); // Sends update
-    a.showStats(); // Displays update
-    b.update(); // Updates B stats
-    b.showStats(); // Displays B Stats
+    
   } // psvm
 }// class MMMAnimal
