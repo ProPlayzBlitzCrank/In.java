@@ -92,52 +92,48 @@ class MMMAnimal
     defense = this.armor * this.speed;
     attack = this.weaponry * (this.temper + this.speed);
     danger = (this.attack + this.defense + this.health) * this.temper;
+    
+    this.showStats();
   }
   
   // INSTANCE METHODS
   public void strike(MMMAnimal opp)
   {
-    //a.strike(opp)
-    if (this.run(opp) == true)
-    {opp.showStats();} // attacking user ran away + show opp stats
+    int off = 0 + new Random().nextInt(this.attack);
+    int def = 0 + new Random().nextInt(opp.defense);
+    System.out.println(this.name + " striked " + opp.name + "!\n"
+                         + this.name + ", off = " + off + "\n"
+                         + opp.name + ", def = " + def + "\n");
+    
+    if (off > def)
+    {
+      int oldHealth = opp.health;
+      opp.health = opp.health - (off - def);
+      int lost = (off - def); // Displays how much health they lost
+      System.out.println("Total Damage = " + lost + "\n"
+                           + opp.name + " lost " + lost + " health. " + opp.name + " went from " + oldHealth + " to " + opp.health + " hp");
+      System.out.println();
+      this.update(); // Update attacking user
+      opp.update(); // Update defending user
+    }
     else
     {
-      int off = 0 + new Random().nextInt(this.attack);
-      int def = 0 + new Random().nextInt(opp.defense);
-      System.out.println(this.name + " striked " + opp.name + "!\n"
-                           + this.name + ", off = " + off + "\n"
-                           + opp.name + ", def = " + def + "\n");
-      
-      if (off > def)
+      if(this.health>5) // this will simulate an unsuccessful attack that tires the  attacker
       {
-        int oldHealth = opp.health;
-        opp.health = opp.health - (off - def);
-        int lost = (off - def); // Displays how much health they lost
-        System.out.println("Total Damage = " + lost + "\n"
-                             + opp.name + " lost " + lost + " health. " + opp.name + " went from " + oldHealth + " to " + opp.health + " hp");
+        int oldHealth = this.health;
+        this.health = this.health - 5;
+        System.out.println(this.name + " lost 5 health. " + this.name + " went from " + oldHealth + " to " + this.health + " hp");
         System.out.println();
         this.update(); // Update attacking user
         opp.update(); // Update defending user
       }
       else
       {
-        if(this.health>5) // this will simulate an unsuccessful attack that tires the  attacker
-        {
-          int oldHealth = this.health;
-          this.health = this.health - 5;
-          System.out.println(this.name + " lost 5 health. " + this.name + " went from " + oldHealth + " to " + this.health + " hp");
-          System.out.println();
-          this.update(); // Update attacking user
-          opp.update(); // Update defending user
-        }
-        else
-        {
-          this.health = this.health - 1;
-          System.out.println(this.name + " lost 1 health. " + this.name + " now has " + this.health);
-          System.out.println();
-          this.update(); // Update attacking user
-          opp.update(); // Update defending user
-        }
+        this.health = this.health - 1;
+        System.out.println(this.name + " lost 1 health. " + this.name + " now has " + this.health);
+        System.out.println();
+        this.update(); // Update attacking user
+        opp.update(); // Update defending user
       }
     }
   }
@@ -194,13 +190,95 @@ class MMMAnimal
     defense = armor * speed;
     danger = (attack + defense + health)*temper;
     
-    if (oldAttack == attack || oldDefense == defense || oldDanger == danger) // if any of the stats were changed display them
+    if (oldAttack != attack || oldDefense != defense || oldDanger != danger) // if any of the stats were changed display them
     {
-      System.out.println(this.name + ", stats were update!");
+      System.out.println(this.name + "'s stats were update!");
       this.showStats();
     }
   }
   
+  public MMMAnimal (MMMAnimal other)
+  {
+    MMMAnimal copy = new MMMAnimal(other);
+    System.out.println("Copying " + other.name + " to " + copy.name);
+    copy.showStats();
+    System.out.println("MMMAnimal is working!");
+  }
+  
+  public void modify (int environment)
+  {
+    weaponry = weaponry *turf[environment];
+    armor = weaponry *turf[environment];
+    speed = speed*turf[environment];
+  }
+  
+  public MMMAnimal versus (MMMAnimal opp)
+  {
+    MMMAnimal favorite = this;
+    MMMAnimal underdog = opp;
+    
+    int enviroment = 0 + new Random().nextInt(turf.length);
+    
+    System.out.println(favorite.name +  " vs " + underdog.name);
+    System.out.println(favorite.danger +  " danger " + underdog.danger);
+    System.out.println(favorite.health + " health " + underdog.health);
+    System.out.println(favorite.armor + " armor " + underdog.armor);
+    System.out.println(favorite.speed + " speed " + underdog.speed);
+    System.out.println(favorite.temper + " temper " + underdog.temper);
+    switch (enviroment)
+    {
+      case 0:
+        System.out.println("Todays battle will take place on: open field");
+        break;
+      case 1:
+        System.out.println("Todays battle will take place on: forest");
+        break;
+      case 2:
+        System.out.println("Todays battle will take place on: water/shoreline");
+        break;
+      case 3:
+        System.out.println("Todays battle will take place on: tundra/arctic");
+        break;
+      case 4:
+        System.out.println("Todays battle will take place on: mountain");
+        break;
+    }
+    System.out.println(favorite.turf[enviroment] + " turf advantage " + underdog.turf[enviroment] + "\n");
+    
+    favorite.modify(enviroment);
+    underdog.modify(enviroment);
+    
+    // run check
+    if (favorite.run(underdog) == true)
+    {
+      underdog.showStats();
+      System.out.println(favorite.name + " ran away./n" + underdog.name + " wins!");
+    }
+    else if (underdog.run(favorite) == true)
+    {
+      favorite.showStats();
+      System.out.println(underdog.name + " ran away./n" + favorite.name + " wins!");
+    }
+    
+    // Attack each other while health is above 0
+    while (favorite.health >= 0 && underdog.health >= 0)
+    {
+      favorite.strike(underdog);
+      underdog.strike(favorite);
+    }
+    
+    // whoever has more health wins
+    if (favorite.health > underdog.health)
+    {
+      System.out.println(favorite.name + " won the fight!");
+      return favorite;
+    }
+    else
+    {
+      System.out.println(underdog.name + " won the fight!");
+      return underdog;
+    } 
+  }
   
   public static void main (String [] args)
   {
@@ -208,15 +286,14 @@ class MMMAnimal
     MMMAnimal shane = new MMMAnimal("Shane", 50, 5, 10, 10, 3, 10, 10, 3, 8, 10); // Create 
     MMMAnimal dinosaur = new MMMAnimal("Dinosaur", 100, 10, 10, 10, 10, 10, 10, 10, 10, 10); // Create dinosaur
 //    MMMAnimal dinosaur = new MMMAnimal("Dinosaur", 1000, 100, 100, 1, 1, 100, 100, 100, 100, 100);
-    shane.showStats(); // Shane's stats
-    dinosaur.showStats(); // Dinosaur stats
-    shane.strike(dinosaur); // Shane attacks Dinosaur
     
+    shane.versus(dinosaur); // Shane vs Dinosaur! They will attack each other
     
   } // psvm
 }// class MMMAnimal
 
 // Changes 
-// • strike can now handle run, and update
-// • update can now handle showStats and display them if they changed
-// • removed run, update, and showStats from psvm
+// • added showStats() in MMMAnimal (removed showStats() from psvm)
+// • fixed update
+// • added do{} statement to attack each other until one of them are dead
+// • removed run check from strike method -> added to versus
