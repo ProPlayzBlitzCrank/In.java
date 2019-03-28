@@ -199,10 +199,11 @@ class MMMAnimal
   
   public MMMAnimal (MMMAnimal other)
   {
-    MMMAnimal copy = new MMMAnimal(other);
-    System.out.println("Copying " + other.name + " to " + copy.name);
-    copy.showStats();
-    System.out.println("MMMAnimal is working!");
+//    MMMAnimal copy = new MMMAnimal();
+//    copy = other;
+//    System.out.println("Copying " + other.name + " to " + copy.name);
+//    this.showStats();
+//    System.out.println("MMMAnimal is working!");
   }
   
   public void modify (int environment)
@@ -218,6 +219,9 @@ class MMMAnimal
     MMMAnimal underdog = opp;
     
     int enviroment = 0 + new Random().nextInt(turf.length);
+    
+    favorite.modify(enviroment);
+    underdog.modify(enviroment);
     
     System.out.println(favorite.name +  " vs " + underdog.name);
     System.out.println(favorite.danger +  " danger " + underdog.danger);
@@ -245,9 +249,6 @@ class MMMAnimal
     }
     System.out.println(favorite.turf[enviroment] + " turf advantage " + underdog.turf[enviroment] + "\n");
     
-    favorite.modify(enviroment);
-    underdog.modify(enviroment);
-    
     // run check
     if (favorite.run(underdog) == true)
     {
@@ -263,19 +264,30 @@ class MMMAnimal
     // Attack each other while health is above 0
     while (favorite.health >= 0 && underdog.health >= 0)
     {
+      if (favorite.attack >= 1)
+      {
       favorite.strike(underdog);
-      underdog.strike(favorite);
-    }
+      
+      if (underdog.attack >= 1)
+      {
+        underdog.strike(favorite);
+      }
+      else 
+      {
+        break;
+      }
+      }
+
     
     // whoever has more health wins
     if (favorite.health > underdog.health)
     {
-      System.out.println(favorite.name + " won the fight!");
+      System.out.println(favorite.name + " won the fight!\n");
       return favorite;
     }
     else
     {
-      System.out.println(underdog.name + " won the fight!");
+      System.out.println(underdog.name + " won the fight!\n");
       return underdog;
     } 
   }
@@ -283,17 +295,57 @@ class MMMAnimal
   public static void main (String [] args)
   {
     // "name", health, weaponry, armor, speed, temper, open field, forest, water/shoreline, tundra/arctic, mountain
-    MMMAnimal shane = new MMMAnimal("Shane", 50, 5, 10, 10, 3, 10, 10, 3, 8, 10); // Create 
-    MMMAnimal dinosaur = new MMMAnimal("Dinosaur", 100, 10, 10, 10, 10, 10, 10, 10, 10, 10); // Create dinosaur
+////    MMMAnimal shane = new MMMAnimal("Shane", 50, 5, 10, 10, 3, 10, 10, 3, 8, 10); // Create 
+////    MMMAnimal dinosaur = new MMMAnimal("Dinosaur", 100, 10, 10, 10, 10, 10, 10, 10, 10, 10); // Create dinosaur
 //    MMMAnimal dinosaur = new MMMAnimal("Dinosaur", 1000, 100, 100, 1, 1, 100, 100, 100, 100, 100);
     
-    shane.versus(dinosaur); // Shane vs Dinosaur! They will attack each other
+//    // Jump jump
+//    MMMAnimal bengal = new MMMAnimal("Bengal Tiger", 80, 10, 6, 7, 10, 8, 10, 6, 8, 8);
+//    MMMAnimal markhor = new MMMAnimal("Markhor", 65, 8, 8, 6, 6, 7, 5, 4, 10, 10);
+//    bengal.strike(markhor);
+//    MMMAnimal spinner = new MMMAnimal("Spinner Dolphin", 70, 7, 4, 7, 8, 0, 0, 10, 0, 0);
+//    MMMAnimal bharal = new MMMAnimal("Bharal", 65, 8, 5, 6, 6, 7, 5, 4, 10, 10);
+//    spinner.strike(bharal);
+//    MMMAnimal serval = new MMMAnimal("Serval", 40, 8, 1, 8, 9, 6, 10, 7, 2, 4);
+//    MMMAnimal impala = new MMMAnimal("Impala", 55, 5, 1, 10, 4, 10, 8, 3, 3, 4);
+//    serval.strike(impala);
+//    MMMAnimal sifaka = new MMMAnimal("Sifaka", 50, 5, 4, 5, 4, 6, 10, 4, 4, 4);
+//    MMMAnimal springhare = new MMMAnimal("Springhare", 30, 4, 1, 10, 3, 10, 8, 3, 6, 5);
+//    sifaka.strike(springhare);
+//    MMMAnimal jackrabbit = new MMMAnimal("Jackrabbit", 25, 4, 1, 10, 3, 10, 8, 3, 6, 5);
+//    MMMAnimal banded = new MMMAnimal("9 Banded Armadillo", 45, 2, 10, 2, 3, 8, 8, 2, 3, 2);
+//    jackrabbit.strike(banded);
+//    MMMAnimal klipspringer = new MMMAnimal("Klipspringer", 30, 4, 1, 8, 2, 10, 10, 1, 3, 6);
+//    MMMAnimal wallaby = new MMMAnimal("Rock Wallaby", 35, 3, 4, 3, 5, 10, 10, 3, 3, 4);
+//    klipspringer.strike(wallaby);
+//    MMMAnimal stoat = new MMMAnimal("Stoat", 25, 4, 3, 3, 6, 7, 10, 7, 5, 5);
+//    MMMAnimal spinifex = new MMMAnimal("Spinifex Hopping Mouse", 10, 2, 1, 10, 3, 5, 10, 0, 3, 6);
+//    stoat.strike(spinifex);
+//    MMMAnimal tenrec = new MMMAnimal("Streaked Tenrec", 15, 4, 4, 2, 3, 4, 9, 0, 4, 5);
+//    MMMAnimal cat = new MMMAnimal("Ringtail Cat", 20, 3, 1, 4, 2, 4, 10, 3, 3, 5);
+//    tenrec.strike(cat);
+//    
+//    // Waterfall
+//    MMMAnimal moose = new MMMAnimal("Moose", 100, 9, 8, 7, 8, 9, 9, 6, 8, 6);
+//    MMMAnimal manatee = new MMMAnimal("Manatee", 95, 4, 9, 5, 5, 0, 0, 10, 0, 0);
+//    MMMAnimal tapir = new MMMAnimal("Lowland Tapir", 65, 6, 7, 7, 2, 3, 9, 7, 3, 2);
+//    MMMAnimal peccary = new MMMAnimal("White-Lipped Peccary", 60, 7, 6, 6, 6, 4, 10, 6, 3, 2);
+//    MMMAnimal beaver = new MMMAnimal("Beaver", 75, 6, 6, 5, 5, 2, 8, 10, 5, 1);
+//    MMMAnimal fox = new MMMAnimal("Crab-Eating Fox", 55, 5, 3, 9, 8, 5, 8, 7, 4, 3);
+//    MMMAnimal otter = new MMMAnimal("Marine Otter", 45, 4, 4, 10, 6, 2, 5, 9, 6, 7);
+//    MMMAnimal flatHeaded = new MMMAnimal("Flat-Headed Cat", 30, 4, 4, 10, 9, 4, 7, 8, 4, 6);
+//    MMMAnimal chevrotain = new MMMAnimal("Water Chevrotain", 20, 4, 2, 10, 4, 2, 6, 7, 2, 3);
+//    MMMAnimal genet = new MMMAnimal("Aquatic Genet", 25, 3, 3, 8, 6, 2, 7, 8, 1, 1);
+//    MMMAnimal moonrat = new MMMAnimal("Moonrat", 15, 3, 2, 9, 10, 3, 7, 7, 1, 3);
+//    MMMAnimal mink = new MMMAnimal("Mink", 20, 3, 2, 9, 8, 2, 7, 8, 5, 2);
+//    MMMAnimal rakali = new MMMAnimal("Rakali", 20, 3, 3, 7, 6, 2, 8, 7, 1, 0);
+//    MMMAnimal oppossum = new MMMAnimal("Water Oppossum", 25, 3, 2, 6, 10, 2, 7, 7, 1, 3);
+//    MMMAnimal vontsira = new MMMAnimal("Vontsira", 30, 5, 3, 4, 4, 3, 6, 7, 2, 3);
+//    MMMAnimal bat = new MMMAnimal("Bulldog Bat", 5, 2, 1, 10, 1, 6, 8, 8, 0, 2);
     
+//    shane.versus(dinosaur); // Shane vs Dinosaur! They will attack each other
+    //MMMAnimal test = (dinosaur);
   } // psvm
 }// class MMMAnimal
 
 // Changes 
-// • added showStats() in MMMAnimal (removed showStats() from psvm)
-// • fixed update
-// • added do{} statement to attack each other until one of them are dead
-// • removed run check from strike method -> added to versus
