@@ -1,4 +1,3 @@
-//import java.util.Random;
 class MMMTourney
 {
   public static void 
@@ -182,52 +181,58 @@ class MMMTourney
   
   public static void main (String [] args)
   {
-    //Random r = new Random ();
+    MMMAnimal [] competitors = new MMMAnimal [16]; // jumpjump animals
+    MMMAnimal [] arrayR = new MMMAnimal[16]; // random animals
+    MMMAnimal [] arrayP = new MMMAnimal[16]; // waterfalls animals
     
-    // eg. 
-     MMMAnimal [] competitors = new MMMAnimal [16];
+// Random
+    for(int i = 0; i<arrayR.length; i++) // generates random animals
+    {
+      arrayR[i] = new MMMAnimal('L');
+    }
     
-     
-     for (int i = 0; i< competitors.length ; i++) 
-     {
-           // Jump jump
-    competitors[i] = new MMMAnimal("Bengal Tiger", 80, 10, 6, 7, 10, 8, 10, 6, 8, 8);
-    i++;
-    competitors[i] = new MMMAnimal("Markhor", 65, 8, 8, 6, 6, 7, 5, 4, 10, 10);
-    i++;
-    competitors[i] = new MMMAnimal("Spinner Dolphin", 70, 7, 4, 7, 8, 0, 0, 10, 0, 0);
-    i++;
-    competitors[i] = new MMMAnimal("Bharal", 65, 8, 5, 6, 6, 7, 5, 4, 10, 10);
-    i++;
-    competitors[i] = new MMMAnimal("Serval", 40, 8, 1, 8, 9, 6, 10, 7, 2, 4);
-    i++;
-    competitors[i] = new MMMAnimal("Impala", 55, 5, 1, 10, 4, 10, 8, 3, 3, 4);
-    i++;
-    competitors[i] = new MMMAnimal("Sifaka", 50, 5, 4, 5, 4, 6, 10, 4, 4, 4);
-    i++;
-    competitors[i] = new MMMAnimal("Springhare", 30, 4, 1, 10, 3, 10, 8, 3, 6, 5);
-    i++;
-    competitors[i] = new MMMAnimal("Jackrabbit", 25, 4, 1, 10, 3, 10, 8, 3, 6, 5);
-    i++;
-    competitors[i] = new MMMAnimal("9 Banded Armadillo", 45, 2, 10, 2, 3, 8, 8, 2, 3, 2);
-    i++;
-    competitors[i] = new MMMAnimal("Klipspringer", 30, 4, 1, 8, 2, 10, 10, 1, 3, 6);
-    i++;
-    competitors[i] = new MMMAnimal("Rock Wallaby", 35, 3, 4, 3, 5, 10, 10, 3, 3, 4);
-    i++;
-    competitors[i] = new MMMAnimal("Stoat", 25, 4, 3, 3, 6, 7, 10, 7, 5, 5);
-    i++;
-    competitors[i] = new MMMAnimal("Spinifex Hopping Mouse", 10, 2, 1, 10, 3, 5, 10, 0, 3, 6);
-    i++;
-    competitors[i] = new MMMAnimal("Streaked Tenrec", 15, 4, 4, 2, 3, 4, 9, 0, 4, 5);
-    i++;
-    competitors[i] = new MMMAnimal("Ringtail Cat", 20, 3, 1, 4, 2, 4, 10, 3, 3, 5);
-    i++;
-       
-//     competitors[i] = new MMMAnimal();      
-//     competitors[i].showStats();
-     }    
-     tournament (competitors);
+// Waterfall
+    arrayP[0] = new MMMAnimal("Moose", 100, 9, 8, 7, 8, 9, 9, 6, 8, 6);
+    arrayP[1] = new MMMAnimal("Manatee", 95, 4, 9, 5, 5, 0, 0, 10, 0, 0);
+    arrayP[2] = new MMMAnimal("Lowland Tapir", 65, 6, 7, 7, 2, 3, 9, 7, 3, 2);
+    arrayP[3] = new MMMAnimal("White-Lipped Peccary", 60, 7, 6, 6, 6, 4, 10, 6, 3, 2);
+    arrayP[4] = new MMMAnimal("Beaver", 75, 6, 6, 5, 5, 2, 8, 10, 5, 1);
+    arrayP[5] = new MMMAnimal("Crab-Eating Fox", 55, 5, 3, 9, 8, 5, 8, 7, 4, 3);
+    arrayP[6] = new MMMAnimal("Marine Otter", 45, 4, 4, 10, 6, 2, 5, 9, 6, 7);
+    arrayP[7] = new MMMAnimal("Flat-Headed Cat", 30, 4, 4, 10, 9, 4, 7, 8, 4, 6);
+    arrayP[8] = new MMMAnimal("Water Chevrotain", 20, 4, 2, 10, 4, 2, 6, 7, 2, 3);
+    arrayP[9] = new MMMAnimal("Aquatic Genet", 25, 3, 3, 8, 6, 2, 7, 8, 1, 1);
+    arrayP[10] = new MMMAnimal("Moonrat", 15, 3, 2, 9, 10, 3, 7, 7, 1, 3);
+    arrayP[11] = new MMMAnimal("Mink", 20, 3, 2, 9, 8, 2, 7, 8, 5, 2);
+    arrayP[12] = new MMMAnimal("Rakali", 20, 3, 3, 7, 6, 2, 8, 7, 1, 0);
+    arrayP[13] = new MMMAnimal("Water Oppossum", 25, 3, 2, 6, 10, 2, 7, 7, 1, 3);
+    arrayP[14] = new MMMAnimal("Vontsira", 30, 5, 3, 4, 4, 3, 6, 7, 2, 3);
+    arrayP[15] = new MMMAnimal("Bulldog Bat", 5, 2, 1, 10, 1, 6, 8, 8, 0, 2);
+    
+    
+// Jump jump
+    competitors[0] = new MMMAnimal("Bengal Tiger", 80, 10, 6, 7, 10, 8, 10, 6, 8, 8);
+    competitors[1] = new MMMAnimal("Markhor", 65, 8, 8, 6, 6, 7, 5, 4, 10, 10);
+    competitors[2] = new MMMAnimal("Spinner Dolphin", 70, 7, 4, 7, 8, 0, 0, 10, 0, 0);
+    competitors[3] = new MMMAnimal("Bharal", 65, 8, 5, 6, 6, 7, 5, 4, 10, 10);
+    competitors[4] = new MMMAnimal("Serval", 40, 8, 1, 8, 9, 6, 10, 7, 2, 4);
+    competitors[5] = new MMMAnimal("Impala", 55, 5, 1, 10, 4, 10, 8, 3, 3, 4);
+    competitors[6] = new MMMAnimal("Sifaka", 50, 5, 4, 5, 4, 6, 10, 4, 4, 4);
+    competitors[7] = new MMMAnimal("Springhare", 30, 4, 1, 10, 3, 10, 8, 3, 6, 5);
+    competitors[8] = new MMMAnimal("Jackrabbit", 25, 4, 1, 10, 3, 10, 8, 3, 6, 5);
+    competitors[9] = new MMMAnimal("9 Banded Armadillo", 45, 2, 10, 2, 3, 8, 8, 2, 3, 2);
+    competitors[10] = new MMMAnimal("Klipspringer", 30, 4, 1, 8, 2, 10, 10, 1, 3, 6);
+    competitors[11] = new MMMAnimal("Rock Wallaby", 35, 3, 4, 3, 5, 10, 10, 3, 3, 4);
+    competitors[12] = new MMMAnimal("Stoat", 25, 4, 3, 3, 6, 7, 10, 7, 5, 5);
+    competitors[13] = new MMMAnimal("Spinifex Hopping Mouse", 10, 2, 1, 10, 3, 5, 10, 0, 3, 6);
+    competitors[14] = new MMMAnimal("Streaked Tenrec", 15, 4, 4, 2, 3, 4, 9, 0, 4, 5);
+    competitors[15] = new MMMAnimal("Ringtail Cat", 20, 3, 1, 4, 2, 4, 10, 3, 3, 5);
+    System.err.println("16 animals loaded correctly :)\n");
+    
+// tournament starts
+    tournament (competitors);
+    tournament (arrayP);
+    tournament (arrayR);
     
   }
   
