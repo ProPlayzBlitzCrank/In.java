@@ -1,6 +1,6 @@
 import java.util.Random;
 
-class MMMAnimal
+class SimpleMMMAnimal
 {
   String name;
   int health;
@@ -90,7 +90,6 @@ class MMMAnimal
     this.turf[4] = turf4;
     
     this.update();
-//    this.showStats();
   }
   
   public MMMAnimal (char env)
@@ -163,33 +162,20 @@ class MMMAnimal
   {
     int off = 0 + new Random().nextInt(this.attack);
     int def = 0 + new Random().nextInt(opp.defense);
-//    System.out.println(this.name + " striked " + opp.name + "!\n"
-//                         + this.name + ", off = " + off + "\n"
-//                         + opp.name + ", def = " + def + "\n");
     
     if (off > def)
     {
-//      int oldHealth = opp.health;
       opp.health = opp.health - (off - def);
-//      int lost = (off - def); // Displays how much health they lost
-//      System.out.println("Total Damage = " + lost + "\n"
-//                           + opp.name + " lost " + lost + " health. " + opp.name + " went from " + oldHealth + " to " + opp.health + " hp");
-//      System.out.println();
     }
     else
     {
       if(this.health>5) // this will simulate an unsuccessful attack that tires the  attacker
       {
-//        int oldHealth = this.health;
         this.health = this.health - 5;
-//        System.out.println(this.name + " lost 5 health. " + this.name + " went from " + oldHealth + " to " + this.health + " hp");
-//        System.out.println();
       }
       else
       {
         this.health = this.health - 1;
-//        System.out.println(this.name + " lost 1 health. " + this.name + " now has " + this.health);
-//        System.out.println();
       }
     }
   }
@@ -205,12 +191,10 @@ class MMMAnimal
     
     if (this.danger < opp.danger && this.speed > opp.speed && this.temper < 5 && run < this.danger)
     {
-//      System.out.println(this.name + " ran away!\n");
       return true;
     }
     else
     {
-//      System.out.println(this.name + " cant run.\n");
       return false;
     }
   }
@@ -260,7 +244,7 @@ class MMMAnimal
     
     // selects turf > Modifies(turf) > updates + displays updated stats > checks if they can run > attacks until one is dead
     favorite.modify(enviroment);
-    underdog.modify(enviroment); // modify is making the #s negative because they are going above the max int
+    underdog.modify(enviroment);
     
     System.out.println(favorite.name +  " vs " + underdog.name);
     System.out.println(favorite.danger +  " danger " + underdog.danger);
@@ -268,8 +252,7 @@ class MMMAnimal
     System.out.println(favorite.armor + " armor " + underdog.armor);
     System.out.println(favorite.speed + " speed " + underdog.speed);
     System.out.println(favorite.temper + " temper " + underdog.temper);
-//    favorite.showStats();
-//    underdog.showStats();
+    
     switch (enviroment)
     {
       case 0:
@@ -293,13 +276,9 @@ class MMMAnimal
     // run check
     if (favorite.run(underdog) == true)
     {
-//      underdog.showStats();
-//      System.out.println(favorite.name + " ran away.\n" + underdog.name + " wins!");
     }
     else if (underdog.run(favorite) == true)
     {
-//      favorite.showStats();
-//      System.out.println(underdog.name + " ran away.\n" + favorite.name + " wins!");
     }
     
     // Attack each other while health is above 0
@@ -327,14 +306,10 @@ class MMMAnimal
     // whoever has more health wins
     if (favorite.health > underdog.health)
     {
-//      System.out.println(favorite.name + " won the fight!\n");
-//      favorite.showStats();
       return this;
     }
     else
     {
-//      System.out.println(underdog.name + " won the fight!\n");
-//      underdog.showStats();
       return opp;
     } 
   }
