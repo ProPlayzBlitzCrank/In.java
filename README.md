@@ -12,3 +12,13 @@ Open these programs for it to work:
 • MMMTourney.java
 
 • SimpleMMMAnimal or DetailMMMAnimal (use SimpleMMMAnimal if you don't care about how much each attack does. The console gets full quick if you use DetailMMMAnimal)
+
+
+# Wilsons Palace Casino Program
+Open these programs for it to work:
+
+• In.Java
+
+• JEventQueue.Java
+
+(Make sure to download background.PNG for the background to work)
