@@ -22,3 +22,10 @@ Open these programs for it to work:
 • JEventQueue.Java
 
 (Make sure to download background.PNG for the background to work)
+
+
+
+# Grade Calculator
+Open: Student2.java and Classroom2.java
+
+Run Classroom2.java
