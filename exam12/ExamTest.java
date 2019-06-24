@@ -60,12 +60,6 @@ class ExamTest
     averages = (marks[0] + marks[1] + marks[2] + marks[3] + marks[4] + marks[5] + marks[6] + marks[7])/8;
   }
   
-  public static double findAverage (int a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8)
-  {
-    double avg = (a1+a2+a3+a4+a5+a6+a7+a8)/8;
-    return avg;
-  }
-  
   public static void main (String [] args)
   {
     System.out.println("Please enter the class size");
